@@ -1,4 +1,12 @@
-import { Controller, Get, Put, Param, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Put,
+  Param,
+  ParseUUIDPipe,
+  ValidationPipe,
+  UsePipes,
+} from '@nestjs/common';
 import {
   FindStudentsResponseDto,
   StudentResponseDto,
@@ -10,6 +18,7 @@ export class StudentTeacherController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get()
+  @UsePipes(ValidationPipe)
   getStudents(
     @Param('teacherId', new ParseUUIDPipe()) teacherId: string,
   ): FindStudentsResponseDto[] {
@@ -17,6 +26,7 @@ export class StudentTeacherController {
   }
 
   @Put('/:studentId')
+  @UsePipes(ValidationPipe)
   updateStudentTeacher(
     @Param('teacherId', new ParseUUIDPipe()) teacherId: string,
     @Param('studentId', new ParseUUIDPipe()) studentId: string,
