@@ -1,4 +1,9 @@
-import { Injectable, NestMiddleware, HttpException } from '@nestjs/common';
+import {
+  Injectable,
+  NestMiddleware,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { students } from '../../db';
 
@@ -10,7 +15,10 @@ export class ValidStudentMiddleware implements NestMiddleware {
       return student.id === studentId;
     });
     if (!studentExists) {
-      throw new HttpException('Student not found', 400);
+      throw new HttpException(
+        `Student with id: ${studentId} not found`,
+        HttpStatus.NOT_FOUND,
+      );
     }
     next();
   }
