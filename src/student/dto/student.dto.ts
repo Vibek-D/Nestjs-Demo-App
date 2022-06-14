@@ -1,17 +1,4 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-export class FindStudentsResponseDto {
-  @IsNumber()
-  @IsNotEmpty()
-  id: string;
-
-  @IsNotEmpty()
-  @IsString()
-  name: string;
-
-  @IsNotEmpty()
-  @IsString()
-  teacher: string;
-}
 
 export class CreateStudentDto {
   @IsNotEmpty()
@@ -21,6 +8,10 @@ export class CreateStudentDto {
   @IsNotEmpty()
   @IsString()
   teacher: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 }
 
 export class StudentResponseDto {

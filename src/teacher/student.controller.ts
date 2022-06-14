@@ -7,10 +7,7 @@ import {
   ValidationPipe,
   UsePipes,
 } from '@nestjs/common';
-import {
-  FindStudentsResponseDto,
-  StudentResponseDto,
-} from '../student/dto/student.dto';
+import { StudentResponseDto } from '../student/dto/student.dto';
 import { StudentService } from '../student/student.service';
 
 @Controller('teachers/:teacherId/students')
@@ -21,7 +18,7 @@ export class StudentTeacherController {
   @UsePipes(ValidationPipe)
   getStudents(
     @Param('teacherId', new ParseUUIDPipe()) teacherId: string,
-  ): FindStudentsResponseDto[] {
+  ): StudentResponseDto[] {
     return this.studentService.getStudentsByTeacherId(teacherId);
   }
 

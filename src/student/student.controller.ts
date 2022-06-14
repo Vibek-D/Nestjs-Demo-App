@@ -10,7 +10,6 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import {
-  FindStudentsResponseDto,
   CreateStudentDto,
   StudentResponseDto,
   UpdateStudentDto,
@@ -23,7 +22,7 @@ export class StudentController {
 
   @Get()
   @UsePipes(ValidationPipe)
-  getStudent(): FindStudentsResponseDto[] {
+  getStudent(): StudentResponseDto[] {
     return this.studentService.getStudents();
   }
 
@@ -31,7 +30,7 @@ export class StudentController {
   @UsePipes(ValidationPipe)
   getStudentById(
     @Param('studentId', new ParseUUIDPipe()) studentId: string,
-  ): FindStudentsResponseDto {
+  ): StudentResponseDto {
     return this.studentService.getStudentById(studentId);
   }
 
