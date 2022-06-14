@@ -21,13 +21,11 @@ export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get()
-  @UsePipes(ValidationPipe)
   getStudent(): StudentResponseDto[] {
     return this.studentService.getStudents();
   }
 
   @Get('/:studentId')
-  @UsePipes(ValidationPipe)
   getStudentById(
     @Param('studentId', new ParseUUIDPipe()) studentId: string,
   ): StudentResponseDto {

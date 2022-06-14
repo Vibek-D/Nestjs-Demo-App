@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, SerializeOptions } from '@nestjs/common';
 import { students } from '../db';
 import {
   CreateStudentDto,
@@ -6,13 +6,17 @@ import {
   UpdateStudentDto,
 } from './dto/student.dto';
 import { v4 as uuid } from 'uuid';
+import { plainToClass } from 'class-transformer';
+import { SerializedStudent } from 'src/types';
 
 @Injectable()
 export class StudentService {
   private students = students;
 
   getStudents(): StudentResponseDto[] {
-    return this.students;
+    return this.students.map((student) =>
+      plainToClass(SerializedStudent, student),
+    );
   }
 
   getStudentById(id: string): StudentResponseDto {
