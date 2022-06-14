@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateStudentDto {
@@ -26,6 +27,9 @@ export class StudentResponseDto {
   @IsNotEmpty()
   @IsString()
   teacher: string;
+
+  @Exclude()
+  password: string;
 }
 
 export class UpdateStudentDto {
@@ -36,4 +40,8 @@ export class UpdateStudentDto {
   @IsNotEmpty()
   @IsString()
   teacher: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 }
