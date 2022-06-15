@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { StudentController } from './student.controller';
 import { StudentService } from './student.service';
-import { ValidStudentMiddleware } from '../common/middlewares/validStudent.middleware';
+import { ValidStudentMiddleware } from '@middlewares/validStudent.middleware';
 
 @Module({
   controllers: [StudentController],

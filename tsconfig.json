@@ -9,7 +9,12 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@helpers/*": ["helpers/*"]
+    },
     "incremental": true
   }
 }

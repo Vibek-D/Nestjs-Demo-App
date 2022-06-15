@@ -5,7 +5,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { students } from '../../db';
+import { students } from '../db';
 
 @Injectable()
 export class ValidStudentMiddleware implements NestMiddleware {

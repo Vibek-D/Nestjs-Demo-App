@@ -7,7 +7,7 @@ import {
 } from './dto/student.dto';
 import { v4 as uuid } from 'uuid';
 import { plainToClass } from 'class-transformer';
-import { SerializedStudent } from 'src/types';
+import { SerializedStudent } from '../types';
 
 @Injectable()
 export class StudentService {
