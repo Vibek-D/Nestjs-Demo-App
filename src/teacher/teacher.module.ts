@@ -14,9 +14,12 @@ import { TeacherService } from './teacher.service';
 })
 export class TeacherModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(logger, ValidTeacherMiddleware).forRoutes({
-      path: 'api/teachers/:teacherId',
-      method: RequestMethod.GET,
-    });
+    consumer
+      .apply(logger, ValidTeacherMiddleware)
+      .exclude({
+        path: 'api/teachers',
+        method: RequestMethod.GET,
+      })
+      .forRoutes(TeacherController);
   }
 }
