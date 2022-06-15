@@ -7,6 +7,7 @@ import {
 import { StudentController } from './student.controller';
 import { StudentService } from './student.service';
 import { ValidStudentMiddleware } from '@middlewares/validStudent.middleware';
+import { logger } from '@helpers/logger';
 
 @Module({
   controllers: [StudentController],
@@ -15,13 +16,15 @@ import { ValidStudentMiddleware } from '@middlewares/validStudent.middleware';
 })
 export class StudentsModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ValidStudentMiddleware).forRoutes({
-      path: 'students/:studentId',
-      method: RequestMethod.GET,
-    });
-    consumer.apply(ValidStudentMiddleware).forRoutes({
-      path: 'students/:studentId',
-      method: RequestMethod.PUT,
-    });
+    consumer.apply(logger, ValidStudentMiddleware).forRoutes(
+      {
+        path: 'api/students/:studentId',
+        method: RequestMethod.GET,
+      },
+      {
+        path: 'api/students/:studentId',
+        method: RequestMethod.PUT,
+      },
+    );
   }
 }
