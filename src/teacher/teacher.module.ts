@@ -1,5 +1,5 @@
 import { logger } from '@helpers/logger';
-import { ValidStudentMiddleware } from '@middlewares/validStudent.middleware';
+import { ValidTeacherMiddleware } from '@middlewares/validTeacher.middleware';
 import { MiddlewareConsumer, NestModule, RequestMethod } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { StudentsModule } from '../student/student.module';
@@ -14,12 +14,9 @@ import { TeacherService } from './teacher.service';
 })
 export class TeacherModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(logger, ValidStudentMiddleware)
-      .exclude({
-        path: 'api/teachers',
-        method: RequestMethod.GET,
-      })
-      .forRoutes(TeacherController);
+    consumer.apply(logger, ValidTeacherMiddleware).forRoutes({
+      path: 'api/teachers/:teacherId',
+      method: RequestMethod.GET,
+    });
   }
 }

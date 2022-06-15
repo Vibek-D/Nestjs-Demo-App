@@ -16,15 +16,18 @@ import { logger } from '@helpers/logger';
 })
 export class StudentsModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(logger, ValidStudentMiddleware).forRoutes(
-      {
-        path: 'api/students/:studentId',
-        method: RequestMethod.GET,
-      },
-      {
-        path: 'api/students/:studentId',
-        method: RequestMethod.PUT,
-      },
-    );
+    consumer
+      .apply(logger, ValidStudentMiddleware)
+      .exclude(
+        {
+          path: 'api/students',
+          method: RequestMethod.GET,
+        },
+        {
+          path: 'api/students',
+          method: RequestMethod.POST,
+        },
+      )
+      .forRoutes(StudentController);
   }
 }
