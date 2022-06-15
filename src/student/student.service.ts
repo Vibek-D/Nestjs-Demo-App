@@ -1,4 +1,4 @@
-import { Injectable, SerializeOptions } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { students } from '../db';
 import {
   CreateStudentDto,
